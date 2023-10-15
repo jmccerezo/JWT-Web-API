@@ -1,4 +1,4 @@
-﻿namespace JWTWebAPI.Dto
+﻿namespace UsersAPI.Dto
 {
     public class UserLoginDto
     {

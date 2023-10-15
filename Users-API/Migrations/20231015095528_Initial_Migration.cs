@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace JWTWebAPI.Migrations
+namespace UsersAPI.Migrations
 {
     /// <inheritdoc />
     public partial class Initial_Migration : Migration

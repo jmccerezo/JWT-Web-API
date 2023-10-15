@@ -1,6 +1,6 @@
-﻿using JWTWebAPI.Dto;
+﻿using UsersAPI.Dto;
 
-namespace JWTWebAPI.Services
+namespace UsersAPI.Services
 {
     public interface IUserService
     {

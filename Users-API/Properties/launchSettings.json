@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "JWTWebAPI": {
+    "UsersAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

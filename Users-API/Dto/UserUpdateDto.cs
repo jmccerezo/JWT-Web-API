@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JWTWebAPI.Dto
+namespace UsersAPI.Dto
 {
     public class UserUpdateDto
     {

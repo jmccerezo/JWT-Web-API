@@ -1,3 +1,5 @@
-# JWT Web API
+# Users API
 
-## Authentication and Role-Based Authorization
+## ASP.NET Core Web API
+
+### JWT Authentication and Role-Based Authorization

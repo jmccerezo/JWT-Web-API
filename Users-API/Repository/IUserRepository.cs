@@ -1,6 +1,6 @@
-﻿using JWTWebAPI.Models;
+﻿using UsersAPI.Models;
 
-namespace JWTWebAPI.Repository
+namespace UsersAPI.Repository
 {
     public interface IUserRepository
     {

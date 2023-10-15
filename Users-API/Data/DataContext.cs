@@ -1,7 +1,7 @@
-﻿using JWTWebAPI.Models;
+﻿using UsersAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace JWTWebAPI.Data
+namespace UsersAPI.Data
 {
     public class DataContext : DbContext
     {

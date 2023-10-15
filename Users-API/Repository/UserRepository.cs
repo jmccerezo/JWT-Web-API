@@ -1,8 +1,8 @@
-﻿using JWTWebAPI.Data;
-using JWTWebAPI.Models;
+﻿using UsersAPI.Data;
+using UsersAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace JWTWebAPI.Repository
+namespace UsersAPI.Repository
 {
     public class UserRepository : IUserRepository
     {

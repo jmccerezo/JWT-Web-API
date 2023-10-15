@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using JWTWebAPI.Dto;
-using JWTWebAPI.Models;
+using UsersAPI.Dto;
+using UsersAPI.Models;
 
-namespace JWTWebAPI.Profiles
+namespace UsersAPI.Profiles
 {
     public class UserProfile : Profile
     {

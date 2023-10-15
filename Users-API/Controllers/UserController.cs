@@ -1,9 +1,9 @@
-﻿using JWTWebAPI.Dto;
-using JWTWebAPI.Services;
+﻿using UsersAPI.Dto;
+using UsersAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JWTWebAPI.Controllers
+namespace UsersAPI.Controllers
 {
     [Route("api/users")]
     [ApiController]

@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using JWTWebAPI.Dto;
-using JWTWebAPI.Models;
-using JWTWebAPI.Repository;
+using UsersAPI.Dto;
+using UsersAPI.Models;
+using UsersAPI.Repository;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace JWTWebAPI.Services
+namespace UsersAPI.Services
 {
     public class UserService : IUserService
     {

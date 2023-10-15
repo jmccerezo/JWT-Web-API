@@ -1,7 +1,7 @@
 using AutoMapper;
-using JWTWebAPI.Data;
-using JWTWebAPI.Repository;
-using JWTWebAPI.Services;
+using UsersAPI.Data;
+using UsersAPI.Repository;
+using UsersAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
