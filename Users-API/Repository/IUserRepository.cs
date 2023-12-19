@@ -5,10 +5,10 @@ namespace UsersAPI.Repository
     public interface IUserRepository
     {
         Task SignupUser(User user);
-        Task<User> LoginUser(User user);
+        Task<User?> LoginUser(string username);
         Task<List<User>> GetAllUsers();
-        Task<User> GetUserById(int id);
-        Task<User> UpdateUser(int id, User user);
-        Task<List<User>> DeleteUser(int id);
+        Task<User?> GetUserById(int id);
+        Task<User?> UpdateUser(int id, User user);
+        Task<User?> DeleteUser(int id);
     }
 }

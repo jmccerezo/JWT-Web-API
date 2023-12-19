@@ -18,9 +18,9 @@ namespace UsersAPI.Repository
             await _dataContext.SaveChangesAsync();
         }
 
-        public async Task<User> LoginUser(User user)
+        public async Task<User?> LoginUser(string username)
         {
-            return await _dataContext.Users.SingleOrDefaultAsync(u => u.Username == user.Username);
+            return await _dataContext.Users.SingleOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<List<User>> GetAllUsers()
@@ -28,14 +28,16 @@ namespace UsersAPI.Repository
             return await _dataContext.Users.ToListAsync();
         }
 
-        public async Task<User> GetUserById(int id)
+        public async Task<User?> GetUserById(int id)
         {
             return await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<User> UpdateUser(int id, User user)
+        public async Task<User?> UpdateUser(int id, User user)
         {
             var updateUser = await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+
+            if (updateUser == null) return null;
 
             updateUser.FirstName = user.FirstName;
             updateUser.LastName = user.LastName;
@@ -45,15 +47,17 @@ namespace UsersAPI.Repository
             return updateUser;
         }
 
-        public async Task<List<User>> DeleteUser(int id)
+        public async Task<User?> DeleteUser(int id)
         {
             var user = await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+
+            if (user == null) return null;
 
             _dataContext.Users.Remove(user);
 
             await _dataContext.SaveChangesAsync();
 
-            return await _dataContext.Users.ToListAsync();
+            return user;
         }
     }
 }

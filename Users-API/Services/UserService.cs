@@ -41,7 +41,7 @@ namespace UsersAPI.Services
                 new Claim(ClaimTypes.Role, user.Role)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddDays(1), signingCredentials: credentials);
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
@@ -73,20 +73,15 @@ namespace UsersAPI.Services
             return newUser;
         }
 
-        public async Task<UserLoginResponseDto> LoginUser(UserLoginDto userLoginDto)
+        public async Task<UserLoginResponseDto?> LoginUser(UserLoginDto userLoginDto)
         {
-            User user = new()
-            {
-                Username = userLoginDto.Username
-            };
+            var userLogin = await _userRepository.LoginUser(userLoginDto.Username);
 
-            var userLogin = await _userRepository.LoginUser(user);
-            if (userLogin == null)
-                return null;
+            if (userLogin == null) return null;
 
-            var verified = VerifyPasswordHash(userLoginDto.Password, userLogin.PasswordHash, userLogin.PasswordSalt);
-            if (!verified)
-                return null;
+            var verified = VerifyPasswordHash(userLoginDto.Password, userLogin.PasswordHash!, userLogin.PasswordSalt!);
+
+            if (!verified) return null;
 
             var userDto = _mapper.Map<UserLoginResponseDto>(userLogin);
             userDto.Token = CreateToken(userLogin);
@@ -121,11 +116,11 @@ namespace UsersAPI.Services
             return _mapper.Map<UserDto>(updatedUser);
         }
 
-        public async Task<List<UserDto>> DeleteUser(int id)
+        public async Task<UserDto> DeleteUser(int id)
         {
-            var users = await _userRepository.DeleteUser(id);
+            var user = await _userRepository.DeleteUser(id);
 
-            return _mapper.Map<List<UserDto>>(users);
+            return _mapper.Map<UserDto>(user);
         }
     }
 }

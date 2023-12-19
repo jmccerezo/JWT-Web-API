@@ -18,8 +18,8 @@ namespace UsersAPI.Controllers
         public async Task<ActionResult<UserDto>> SignupUser(UserSignupDto userSignupDto)
         {
             var userExists = _userService.CheckUsername(userSignupDto.Username);
-            if (userExists)
-                return BadRequest("Username is already taken");
+
+            if (userExists) return BadRequest("Username is already taken");
 
             var newUser = await _userService.SignupUser(userSignupDto);
 
@@ -30,8 +30,8 @@ namespace UsersAPI.Controllers
         public async Task<ActionResult<UserLoginResponseDto>> LoginUser(UserLoginDto userLoginDto)
         {
             var user = await _userService.LoginUser(userLoginDto);
-            if (user == null)
-                return BadRequest("Incorrect Username or Password");
+
+            if (user == null) return BadRequest("Incorrect Username or Password");
 
             return Ok(user);
         }
