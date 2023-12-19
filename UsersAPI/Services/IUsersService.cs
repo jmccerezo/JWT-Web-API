@@ -2,7 +2,7 @@
 
 namespace UsersAPI.Services
 {
-    public interface IUserService
+    public interface IUsersService
     {
         bool CheckUsername(string username);
         Task<UserDto> SignupUser(UserSignupDto userSignupDto);

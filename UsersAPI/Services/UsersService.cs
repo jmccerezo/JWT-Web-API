@@ -10,12 +10,12 @@ using System.Text;
 
 namespace UsersAPI.Services
 {
-    public class UserService : IUserService
+    public class UsersService : IUsersService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUsersRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration)
+        public UsersService(IUsersRepository userRepository, IMapper mapper, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _mapper = mapper;

@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace UsersAPI.Controllers
 {
-    [Route("api/auth")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public AuthController(IUserService userService)
+        private readonly IUsersService _userService;
+        public AuthController(IUsersService userService)
         {
             _userService = userService;
         }

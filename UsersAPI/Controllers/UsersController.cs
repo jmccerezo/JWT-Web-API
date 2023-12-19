@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace UsersAPI.Controllers
 {
-    [Route("api/users")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IUsersService _userService;
+        public UserController(IUsersService userService)
         {
             _userService = userService;
         }
