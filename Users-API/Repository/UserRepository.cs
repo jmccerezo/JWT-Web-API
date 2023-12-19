@@ -35,7 +35,7 @@ namespace UsersAPI.Repository
 
         public async Task<User?> UpdateUser(int id, User user)
         {
-            var updateUser = await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var updateUser = await GetUserById(id);
 
             if (updateUser == null) return null;
 
@@ -49,7 +49,7 @@ namespace UsersAPI.Repository
 
         public async Task<User?> DeleteUser(int id)
         {
-            var user = await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var user = await GetUserById(id);
 
             if (user == null) return null;
 

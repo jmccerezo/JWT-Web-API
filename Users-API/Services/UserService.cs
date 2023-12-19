@@ -56,16 +56,17 @@ namespace UsersAPI.Services
 
         public async Task<UserDto> SignupUser(UserSignupDto userSignupDto)
         {
-            User user = new();
-
             CreatePasswordHash(userSignupDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.Role = userSignupDto.Role;
-            user.FirstName = userSignupDto.FirstName;
-            user.LastName = userSignupDto.LastName;
-            user.Username = userSignupDto.Username;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            User user = new()
+            {
+                Role = userSignupDto.Role,
+                FirstName = userSignupDto.FirstName,
+                LastName = userSignupDto.LastName,
+                Username = userSignupDto.Username,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+            };
 
             await _userRepository.SignupUser(user);
             var newUser = _mapper.Map<UserDto>(user);
