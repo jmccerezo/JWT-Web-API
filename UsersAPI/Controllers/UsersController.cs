@@ -9,16 +9,16 @@ namespace UsersAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUsersService _userService;
-        public UserController(IUsersService userService)
+        private readonly IUsersService _usersService;
+        public UserController(IUsersService usersService)
         {
-            _userService = userService;
+            _usersService = usersService;
         }
 
         [HttpGet, Authorize]
         public async Task<ActionResult<UserDto>> GetAllUsers()
         {
-            var users = await _userService.GetAllUsers();
+            var users = await _usersService.GetAllUsers();
 
             return Ok(users);
         }
@@ -26,7 +26,7 @@ namespace UsersAPI.Controllers
         [HttpGet("{id:int}"), Authorize]
         public async Task<ActionResult<UserDto>> GetUserById(int id)
         {
-            var user = await _userService.GetUserById(id);
+            var user = await _usersService.GetUserById(id);
 
             if (user == null) return NotFound("User not found");
 
@@ -36,7 +36,7 @@ namespace UsersAPI.Controllers
         [HttpPatch("{id:int}"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<UserDto>> UpdateUser(int id, UserUpdateDto userUpdateDto)
         {
-            var user = await _userService.UpdateUser(id, userUpdateDto);
+            var user = await _usersService.UpdateUser(id, userUpdateDto);
 
             if (user == null) return NotFound("User not found");
 
@@ -46,7 +46,7 @@ namespace UsersAPI.Controllers
         [HttpDelete("{id:int}"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<UserDto>> DeleteUser(int id)
         {
-            var user = await _userService.DeleteUser(id);
+            var user = await _usersService.DeleteUser(id);
 
             if (user == null) return NotFound("User not found");
 

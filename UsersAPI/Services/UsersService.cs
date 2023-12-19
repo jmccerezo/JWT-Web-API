@@ -12,12 +12,12 @@ namespace UsersAPI.Services
 {
     public class UsersService : IUsersService
     {
-        private readonly IUsersRepository _userRepository;
+        private readonly IUsersRepository _usersRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public UsersService(IUsersRepository userRepository, IMapper mapper, IConfiguration configuration)
+        public UsersService(IUsersRepository usersRepository, IMapper mapper, IConfiguration configuration)
         {
-            _userRepository = userRepository;
+            _usersRepository = usersRepository;
             _mapper = mapper;
             _configuration = configuration;
         }
@@ -50,7 +50,7 @@ namespace UsersAPI.Services
         }
         public bool CheckUsername(string username)
         {
-            var users = _userRepository.GetAllUsers().Result;
+            var users = _usersRepository.GetAllUsers().Result;
             return users.Any(u => u.Username == username);
         }
 
@@ -68,7 +68,7 @@ namespace UsersAPI.Services
                 PasswordSalt = passwordSalt,
             };
 
-            await _userRepository.SignupUser(user);
+            await _usersRepository.SignupUser(user);
             var newUser = _mapper.Map<UserDto>(user);
 
             return newUser;
@@ -76,7 +76,7 @@ namespace UsersAPI.Services
 
         public async Task<UserLoginResponseDto?> LoginUser(UserLoginDto userLoginDto)
         {
-            var userLogin = await _userRepository.LoginUser(userLoginDto.Username);
+            var userLogin = await _usersRepository.LoginUser(userLoginDto.Username);
 
             if (userLogin == null) return null;
 
@@ -92,14 +92,14 @@ namespace UsersAPI.Services
 
         public async Task<List<UserDto>> GetAllUsers()
         {
-            var users = await _userRepository.GetAllUsers();
+            var users = await _usersRepository.GetAllUsers();
 
             return _mapper.Map<List<UserDto>>(users);
         }
 
         public async Task<UserDto> GetUserById(int id)
         {
-            var user = await _userRepository.GetUserById(id);
+            var user = await _usersRepository.GetUserById(id);
 
             return _mapper.Map<UserDto>(user);
         }
@@ -112,14 +112,14 @@ namespace UsersAPI.Services
                 LastName = userUpdateDto.LastName
             };
 
-            var updatedUser = await _userRepository.UpdateUser(id, user);
+            var updatedUser = await _usersRepository.UpdateUser(id, user);
 
             return _mapper.Map<UserDto>(updatedUser);
         }
 
         public async Task<UserDto> DeleteUser(int id)
         {
-            var user = await _userRepository.DeleteUser(id);
+            var user = await _usersRepository.DeleteUser(id);
 
             return _mapper.Map<UserDto>(user);
         }

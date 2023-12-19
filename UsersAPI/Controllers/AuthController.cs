@@ -8,20 +8,20 @@ namespace UsersAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUsersService _userService;
-        public AuthController(IUsersService userService)
+        private readonly IUsersService _usersService;
+        public AuthController(IUsersService usersService)
         {
-            _userService = userService;
+            _usersService = usersService;
         }
 
         [HttpPost("signup")]
         public async Task<ActionResult<UserDto>> SignupUser(UserSignupDto userSignupDto)
         {
-            var userExists = _userService.CheckUsername(userSignupDto.Username);
+            var userExists = _usersService.CheckUsername(userSignupDto.Username);
 
             if (userExists) return BadRequest("Username is already taken");
 
-            var newUser = await _userService.SignupUser(userSignupDto);
+            var newUser = await _usersService.SignupUser(userSignupDto);
 
             return Ok(newUser);
         }
@@ -29,7 +29,7 @@ namespace UsersAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserLoginResponseDto>> LoginUser(UserLoginDto userLoginDto)
         {
-            var user = await _userService.LoginUser(userLoginDto);
+            var user = await _usersService.LoginUser(userLoginDto);
 
             if (user == null) return BadRequest("Incorrect Username or Password");
 
